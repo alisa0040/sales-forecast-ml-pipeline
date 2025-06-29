@@ -69,8 +69,8 @@ Example response:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/Alisa0040/sales-forecast-api.git
-cd sales-forecast-api
+git clone https://github.com/alisa0040/sales-forecast-ml-pipeline.git
+cd sales-forecast-ml-pipeline
 
 # 2. Install dependencies
 pip install -r requirements.txt
