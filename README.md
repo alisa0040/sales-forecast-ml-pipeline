@@ -1,80 +1,84 @@
 # Sales Forecast ML Pipeline
 
-### End-to-End Machine Learning System for Retail Revenue Prediction
+### End-to-End ML System for Real-Time Retail Revenue Prediction
+
+A full-stack machine learning pipeline that predicts daily store sales using historical data and business signals.  
+Built for production use: clean architecture, fast inference, Docker deployment, and Hugging Face integration.
 
 ---
 
-## Overview
+## 🛠️ Tech Stack
 
-This project is a **production-grade ML pipeline** that predicts daily sales for retail stores. It encompasses the complete lifecycle: from raw data and feature engineering to model training, API integration, Docker packaging, and deployment.
-
-The project is fully reproducible, fast to deploy, and tested for real-time inference.
-
-
-##  Tech Stack
-
-| Layer             | Tools                         |
-| ----------------- | ----------------------------- |
-| Data Processing   | pandas, NumPy                 |
-| Modeling          | XGBoost, scikit-learn, Optuna |
-| API Interface     | FastAPI, Pydantic             |
-| Deployment        | Docker, Uvicorn               |
-| Logging / Testing | logging, curl                 |
+| Layer             | Tools                           |
+|------------------|----------------------------------|
+| Data Processing   | `pandas`, `numpy`               |
+| Modeling          | `xgboost`, `scikit-learn`, `optuna` |
+| Serving API       | `fastapi`, `pydantic`, `uvicorn` |
+| Deployment        | `Docker`, `Hugging Face Spaces` |
+| Experimentation   | `matplotlib`, `seaborn`, `jupyter` |
+| Logging           | `logging`, `curl`               |
 
 ---
 
-## Model Performance
+## 📈 Model Performance
 
-| Metric | Value  |
-| ------ | ------ |
-| RMSPE  | \~16.8% |
+The model is trained on log-transformed daily sales and optimized using RMSPE — a metric well-suited for retail time series.
 
-The model is trained on log-transformed sales data for variance stabilization, evaluated on a holdout test set, and validated with RMSPE (Root Mean Square Percentage Error).
+| Metric | Value     |
+|--------|-----------|
+| RMSPE  | ≈ 16.8%   | *(on validation set)*
 
 ---
 
-##  Project Architecture
+## 🗂️ Project Structure
 
-```
+```bash
 sales-forecast-ml-pipeline/
-├── data/                  # Raw CSV data
-├── notebooks/             # EDA + modeling notebooks
+├── data/                  # Raw input data (CSV)
+├── notebooks/             # Jupyter notebooks for EDA & prototyping
 ├── src/
-│   ├── predict.py         # Submission for competition
-│   └── features.py        # Feature generation
+│   └── features.py        # Feature engineering logic
 ├── fastapi_app/
-│   ├── main.py            # FastAPI app with endpoints
-│   └── input_example.json # Example request payload
-├── models/                # Trained XGBoost model
-├── requirements.txt       # All Python dependencies
-├── train.py               # Model training
-├── Dockerfile             # Docker build instructions
+│   └── main.py            # FastAPI API code
+├── models/                # Trained model artifacts (e.g., .joblib)
+├── train.py               # Model training pipeline
+├── submission.csv         # Example submission format
+├── test_input.json        # Sample API input for testing
+├── requirements.txt       # Python dependencies
+├── Dockerfile             # Docker configuration for deployment
 └── README.md              # Project documentation
 ```
+##  Deployment (Hugging Face)
+This API is hosted on Hugging Face Spaces:
 
----
+- 🔧 API endpoint: [https://alisa0040-sales-forecast-api.hf.space](https://alisa0040-sales-forecast-api.hf.space)
+- 📁 Deployment repository: [View on Hugging Face](https://huggingface.co/spaces/Alisa0040/sales-forecast-api/tree/main)
 
-## Live API Demo
+You can interact with the API using this command:
 
-This project is deployed and running on **Hugging Face Spaces**.
-
-🔗 **Live Endpoint:** [https://huggingface.co/spaces/Alisa0040/sales-forecast-api](https://huggingface.co/spaces/Alisa0040/sales-forecast-api)
-
-🔍 **Interactive Swagger UI:** `https://huggingface.co/spaces/Alisa0040/sales-forecast-api/docs`
-
-Supports `POST /predict` endpoint for batch sales predictions.
-
+```bash
+curl -X POST https://alisa0040-sales-forecast-api.hf.space/predict \
+     -H "Content-Type: application/json" \
+     -d @test_input.json
+```
+Example response:
+{"predictions": [5504.970703125]}
 ---
 
 ## 🛠️ How to Run Locally
 
 ```bash
-# 1. Train model
-python train.py
+# 1. Clone the repository
+git clone https://github.com/Alisa0040/sales-forecast-api.git
+cd sales-forecast-api
 
-# 2. Launch API
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Launch the API
 uvicorn fastapi_app.main:app --reload
 ```
+The API will be available at: http://localhost:8000
 
 ---
 
