@@ -15,7 +15,6 @@ Built for production use: clean architecture, fast inference, Docker deployment,
 | Modeling          | `xgboost`, `scikit-learn`, `optuna` |
 | Serving API       | `fastapi`, `pydantic`, `uvicorn` |
 | Deployment        | `Docker`, `Hugging Face Spaces` |
-| Experimentation   | `matplotlib`, `seaborn`, `jupyter` |
 | Logging           | `logging`, `curl`               |
 
 ---
@@ -86,6 +85,33 @@ uvicorn fastapi_app.main:app --reload
 Interactive API documentation (Swagger UI) is available at:
 👉 http://127.0.0.1:8000/docs
 
+Example Request Body
+
+You can use this sample input in Swagger UI:
+```bash
+{
+  "inputs": [
+    {
+      "Store": 1,
+      "DayOfWeek": 5,
+      "Date": "2015-06-19",
+      "Promo": 1,
+      "StateHoliday": "0",
+      "SchoolHoliday": 1,
+      "StoreType": "a",
+      "Assortment": "a",
+      "CompetitionDistance": 1270.0,
+      "CompetitionOpenSinceMonth": 9,
+      "CompetitionOpenSinceYear": 2008,
+      "Promo2": 1,
+      "Promo2SinceWeek": 13,
+      "Promo2SinceYear": 2010,
+      "PromoInterval": "Jan,Apr,Jul,Oct",
+      "Open": 1
+    }
+  ]
+}
+```
 ---
 
 ## 🐳 Docker Instructions
