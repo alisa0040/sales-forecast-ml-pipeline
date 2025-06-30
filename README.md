@@ -124,7 +124,7 @@ docker build -t sales-api .
 docker run -p 8000:8000 sales-api
 ```
 
-API will be available at `http://localhost:8000`
+API will be available at `http://localhost:8000/docs`
 
 ---
 
