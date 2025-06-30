@@ -69,16 +69,22 @@ Example response:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/alisa0040/sales-forecast-ml-pipeline.git
+git clone git@github.com:alisa0040/sales-forecast-ml-pipeline.git
 cd sales-forecast-ml-pipeline
 
-# 2. Install dependencies
+# 2. (Recommended) Create and activate a virtual environment
+python3 -m venv env
+source env/bin/activate  # On Windows: env\Scripts\activate
+
+# 3. Install dependencies
+pip install --upgrade pip
 pip install -r requirements.txt
 
-# 3. Launch the API
+# 4. Launch the API server
 uvicorn fastapi_app.main:app --reload
 ```
-The API will be available at: http://localhost:8000
+Interactive API documentation (Swagger UI) is available at:
+👉 http://127.0.0.1:8000/docs
 
 ---
 
